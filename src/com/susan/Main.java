@@ -49,7 +49,7 @@ public class Main {
         if ("yes".equals(answer) || "Yes".equals(answer)) {
             yn = true;
         }
-        if (yn == true) {
+        if (yn) {
 
             //   enter and validate  the six numbers - as many times as you want
 
@@ -128,7 +128,7 @@ public class Main {
                     nol++;
                 }
 
-            } while (ynAgain == true);
+            } while (ynAgain);
             lineNo = nol + 1;
         }
             // choose a quick pick and choose how many lines - numbers picked at random
@@ -183,7 +183,7 @@ public class Main {
             if ("yes".equals(fileSaveAnswer) || "Yes".equals(fileSaveAnswer)) {
         fileSave = true;
     }
-            if (fileSave == true) {
+            if (fileSave) {
 
                 do{
                     System.out.println("What file name would you like to save to: ");
