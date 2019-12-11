@@ -11,8 +11,6 @@ public class Main {
         int[][] lottery = new int[20][6];
         int[] lotterySort = new int[6];
         int[] lotteryResults = new int[6];
-        int[][] lotteryWinner = new int[20][6];
-        int[] lineWinner = new int[20];
 
         boolean yn = false;
         boolean ynAgain = true;
@@ -214,35 +212,11 @@ public class Main {
 
         // compare   numbers  to draw and print results
 
-        for (int c = 0; c < 6; c++)
-            for (int d = 0; d < 6; d++)
-                for (e = 0; e < lineNo; e++)
-                    if (lotteryResults[c] == lottery[e][d]) {
-                        lotteryWinner[e][d] = lottery[e][d];
-                        lineWinner[e] = lineWinner[e] + 1;
-                    }
-
-
         System.out.println(" ");
         System.out.println("        - Check Your Lines - ");
-
-        for (e = 0; e < lineNo; e++) {
-            for (int s = 0; s < 6; s++)
-                System.out.print(lottery[e][s] + " ");
-            for (int r = 0; r < 6; r++) {
-                if (lotteryWinner[e][r] > 0) {
-                    System.out.print(" *" + lotteryWinner[e][r] + " ");
-
-                }
-            }
-            if (lineWinner[e] > 0)
-                System.out.print(" - Numbers Matched Total - " + lineWinner[e]);
-
-            System.out.println(" ");
-
+        for(int i = 0; i < lottery.length; i++){
+            printOutMatches(lotteryResults, lottery[i]);
         }
-
-
     }
 
     public static boolean containedInArray(int intToCheck, int[] intArray){
@@ -258,5 +232,25 @@ public class Main {
 
     public static boolean isWithinRange(int numToCheck){
         return numToCheck > 0 && numToCheck < 49;
+    }
+
+    public static void printOutMatches(int[] results, int[] lineToCheck){
+        List<Integer> matchedNumbers = new ArrayList<>();
+        for(int i = 0; i < results.length; i++){
+            if(containedInArray(results[i], lineToCheck)){
+                matchedNumbers.add(results[i]);
+            }
+        }
+        Arrays.sort(lineToCheck);
+        StringBuilder stringBuilder = new StringBuilder(Arrays.toString(lineToCheck));
+        if(!matchedNumbers.isEmpty()) {
+            for(Integer in : matchedNumbers){
+                stringBuilder.append(" *" );
+                stringBuilder.append(in);
+            }
+            stringBuilder.append(" - Numbers Matched Total - ");
+            stringBuilder.append(matchedNumbers.size());
+        }
+        System.out.println(stringBuilder.toString());
     }
 }
