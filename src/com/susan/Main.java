@@ -14,11 +14,9 @@ public class Main {
 
         boolean yn = false;
         boolean ynAgain = true;
-        String answer = " ";
         String answerAgain = " ";
         boolean fileSave = false;
         String fileSaveAnswer = " ";
-        boolean fileReplace = false;
         String fileReplaceAnswer = " ";
         String nameOfFile = "";
 
@@ -27,8 +25,6 @@ public class Main {
         int nol = 0;
         int x = 0;
         int z = 0;
-        int k = 0;
-        int e = 0;
         int lineNo = 0;
         int replaceFile = 0;
 
@@ -36,8 +32,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Do you wish to enter your own numbers: yes or no");
-        ScannerWrapper scannerWrapper = new ScannerWrapper();
-        yn = scannerWrapper.nextYes();
+        String decision = scanner.next();
+        yn = decision.toLowerCase().equals("yes");
 
         if (yn) {
 
@@ -150,15 +146,7 @@ public class Main {
             } while (replaceFile < 1);
 
             for (int b = 0; b < lineNo; b++) {
-                String recordForFile1 = String.valueOf(lottery[b][5]);
-                String recordForFile3 = String.valueOf(lottery[b][4]);
-                String recordForFile4 = String.valueOf(lottery[b][3]);
-                String recordForFile2 = String.valueOf(lottery[b][2]);
-                String recordForFile5 = String.valueOf(lottery[b][1]);
-                String recordForFile6 = String.valueOf(lottery[b][0]);
-                String recordForFile = (recordForFile1 + "," + recordForFile2 + ","
-                        + recordForFile3 + "," + recordForFile4 + "," + recordForFile5 + "," + recordForFile6);
-
+                String recordForFile = Arrays.toString(lottery[b]);
                 System.out.println(recordForFile);
 
                 try {
@@ -167,8 +155,7 @@ public class Main {
                     pwriter.println(recordForFile);
                     pwriter.close();
                 } catch (IOException ex) {
-                    System.out.println("Error %s\n" + ex);
-
+                    ex.printStackTrace();
                 }
             }
 
